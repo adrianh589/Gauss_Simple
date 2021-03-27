@@ -1,0 +1,22 @@
+<!-- Carga del formulario -->
+<form 
+[formGroup]="cargaFormulario"
+>
+  <h2 class="mt-5">Por favor seleccione el archivo txt...</h2>
+
+      <input 
+      (change)="leerArchivo($event.target['files'])"
+      formControlName="archivo"
+      type="file" 
+      class="form-control-file" 
+      id="inputGroupFile01">
+</form>
+
+<div *ngIf="cargaFormulario.invalid && formularioPosteado" class="row">
+  <div  class="col text-danger">
+    <p > El archivo no es TXT </p>
+  </div>
+</div>
+
+<app-modals></app-modals>
+
