@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GaussService } from 'src/app/gauss.service';
-import { FileListModel } from 'src/app/models/fileList.model';
+import { GaussService } from 'src/app/services/gauss.service';
+import { FileListInterface } from 'src/app/interfaces/fileList.interface';
 declare var $: any;
 
 @Component({
@@ -25,9 +25,9 @@ export class CargaComponent {
 
   /**
    * Funcion que permite leer un archivo .txt
-   * @param fileList 
+   * @param fileList
    */
-  leerArchivo(fileList: FileListModel) {
+  leerArchivo(fileList: FileListInterface) {
     this.formularioPosteado = true;
     // Obtener el archivo 0 dado que solo es 1
     let file = fileList[0];
