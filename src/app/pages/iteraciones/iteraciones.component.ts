@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { GaussService } from 'src/app/services/gauss.service';
+import {Component, OnInit} from '@angular/core';
+import {GaussService} from 'src/app/services/gauss.service';
 import {GaussSimple} from '../../helpers/GaussSimple';
 
 @Component({
@@ -7,30 +7,36 @@ import {GaussSimple} from '../../helpers/GaussSimple';
   templateUrl: './iteraciones.component.html',
   styleUrls: ['./iteraciones.component.css']
 })
-export class IteracionesComponent{
+export class IteracionesComponent {
 
-  public numeros: number[][];
+  public numeros;
 
-  constructor( private gaussService: GaussService ) {
-    this.numeros = this.convertirAarray();
-    console.log(this.numeros);
+  constructor(private gaussService: GaussService) {
+    //this.numeros = this.convertirAarray();//Descomentar esta linea para leer los numeros por txt
+    this.numeros = [
+      [3, -0.1,	-0.2,	7.85],
+      [0.1,	7,	-0.3,	-19.3],
+      [0.3,	-0.2,	10,	71.4]
+    ];
+
     const gaussSimple = new GaussSimple(this.numeros);
+    gaussSimple.ejecutar();
   }
 
   /**
    * Función para convertir el texto a array
    * @returns Regresa el Array de arrays con los numeros para la funcion de Gauss Simple
    */
-  convertirAarray(){
+  convertirAarray() {
     const archivo = this.gaussService.archivo;
     const array: number[][] = archivo
       .split('\n')// Separar por saltos de linea
-      .map((value, index, array)=> {// mapear cada indice dado que son strings
+      .map((value, index, array) => {// mapear cada indice dado que son strings
         return array[index]// Tomar cada linea
-        .split(' ')// Convertir a array el string
-        .map(Number) // Convertir cada posicion de string a tipo Number
+          .split(' ')// Convertir a array el string
+          .map(Number) // Convertir cada posicion de string a tipo Number
       });
-    array.pop();// Dadp que guarda la ultima posicion como vacio, se elimina
+    array.pop();// Dado que guarda la ultima posicion como vacio, se elimina
     return array;
   }
 
