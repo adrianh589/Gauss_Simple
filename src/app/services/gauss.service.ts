@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class GaussService {
 
   public archivo: string;
+  public mostrarIteraciones: number[];
 
   constructor() { }
 }

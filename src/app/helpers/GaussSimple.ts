@@ -1,17 +1,21 @@
 /**
  * Clase que ejecutara las acciones del gauss simple
  */
+import {GaussService} from "../services/gauss.service";
+
 export class GaussSimple{
 
   private tablaResultados = [];
+  private iteracionesHTML = [];
 
   constructor(private numeros: number[][]) { }
 
   /**
-   * Funcion para hacer la operacon de gauss simple
+   * Funcion para hacer la operacion de gauss simple
    */
   ejecutar(): number[][]{
     const matrix = [...this.numeros];
+    this.iteracionesHTML.push([...matrix]);
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
         if(j < i && matrix[i][j] !== 0){// Condicion para iterar unicamente la diagonal de la matriz
@@ -19,12 +23,12 @@ export class GaussSimple{
           const valAct = matrix[i][j];
           const valActFilaAux = aux[j];
           matrix[i] = this.operarFila(aux, valAct, valActFilaAux, matrix[i], j);
+          this.iteracionesHTML.push([...matrix]);//Meter las iteraciones
         }
       }
     }
     console.table(matrix);
-    this.sustitucionHaciaAtras(matrix);
-    return matrix;
+    return this.iteracionesHTML;
   }
 
   /**
@@ -38,7 +42,7 @@ export class GaussSimple{
   operarFila(filaAuxiliar: number[], valorActual: number, valActFilAux: number, filaAModificar: number[], act: number): number[]{
     let aux: number[] = [...filaAuxiliar];
     for (let i = act; i < filaAModificar.length; i++) {
-      aux[i] = filaAModificar[i] - (aux[i] * (valorActual/valActFilAux));
+      aux[i] = Math.round(filaAModificar[i] - (aux[i] * (valorActual/valActFilAux)));
     }
     return aux;
   }
@@ -57,25 +61,6 @@ export class GaussSimple{
         return matrix[i];
       }
     }
-  }
-
-
-  sustitucionHaciaAtras(matrix: number[][]){
-    for (let i = matrix.length; i >=0 ; i--) {//Saber cuantas x son
-
-      const ultimaX = this.sacarUltimaX(matrix);
-      this.tablaResultados.push({['x'+i]: ultimaX});
-
-     }
-    console.log(this.tablaResultados);
-  }
-
-  /**
-   * Funcion para sacar la ultima X
-   * @param matrix Recibe la matriz con la diagonal en ceros
-   */
-  sacarUltimaX(matrix: number[][]){
-    return matrix[matrix.length-1][matrix[0].length-1]/matrix[matrix.length-1][matrix[0].length-2];
   }
 
 }

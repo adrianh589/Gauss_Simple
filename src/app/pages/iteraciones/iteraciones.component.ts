@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GaussService} from 'src/app/services/gauss.service';
 import {GaussSimple} from '../../helpers/GaussSimple';
+import gaussResult from 'gaussian-elimination';
 
 @Component({
   selector: 'app-iteraciones',
@@ -10,17 +11,26 @@ import {GaussSimple} from '../../helpers/GaussSimple';
 export class IteracionesComponent {
 
   public numeros;
+  public iteracionesHTML;
+  public resultadosFinales;
 
   constructor(private gaussService: GaussService) {
-    //this.numeros = this.convertirAarray();//Descomentar esta linea para leer los numeros por txt
+    // this.numeros = this.convertirAarray();//Descomentar esta linea para leer los numeros por txt
     this.numeros = [
       [3, -0.1,	-0.2,	7.85],
       [0.1,	7,	-0.3,	-19.3],
       [0.3,	-0.2,	10,	71.4]
     ];
 
+    //Instancia de la clase
     const gaussSimple = new GaussSimple(this.numeros);
-    gaussSimple.ejecutar();
+    //Ejecutar el proceso
+    this.iteracionesHTML = gaussSimple.ejecutar();
+    //Imprimir por consola las iteraciones
+    console.log(this.iteracionesHTML);
+    //Resultados finales de la matriz
+    this.resultadosFinales = gaussResult(this.numeros);
+    console.table(this.resultadosFinales);
   }
 
   /**

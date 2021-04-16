@@ -53,7 +53,7 @@ export class CargaComponent {
   NoEsTXT(){
     return (formGroup: FormGroup) => {
       const archivo = formGroup.get('archivo');
-      if(archivo.value.includes('.txt')){
+      if(archivo.value.includes('.txt') || archivo.value.includes('.dat')){
         archivo.setErrors(null);
       }else{
         archivo.setErrors({ NoEsTxt: true });

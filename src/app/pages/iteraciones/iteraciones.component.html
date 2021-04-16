@@ -1,1 +1,16 @@
-<p *ngFor="let item of numeros">iteraciones works!</p>
+<table
+  *ngFor="let tabla of iteracionesHTML; let pos = index"
+  class="table table-dark mt-3 table-striped"
+>
+  <thead>
+  <tr>
+    <th scope="col" *ngFor="let x of tabla[0]; let i = index">X{{i+1}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let resTabla of tabla; let pos = index">
+    <td *ngFor="let valor of resTabla">{{valor}}</td>
+  </tr>
+  </tbody>
+</table>
+
