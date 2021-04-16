@@ -1,10 +1,16 @@
-<table
-  *ngFor="let tabla of iteracionesHTML; let pos = index"
+<div class="container" *ngFor="let tabla of iteracionesHTML; let pos = index">
+  <div class="alert alert-success" role="alert">
+    Iteracion Numero {{pos+1}}
+  </div>
+  <table
   class="table table-dark mt-3 table-striped"
 >
   <thead>
   <tr>
-    <th scope="col" *ngFor="let x of tabla[0]; let i = index">X{{i+1}}</th>
+    <th scope="col" *ngFor="let x of tabla[0]; let i = index; last as isLast" >
+      <span *ngIf="!isLast">X{{i+1}}</span>
+      <span *ngIf="isLast">B</span>
+    </th>
   </tr>
   </thead>
   <tbody>
@@ -12,5 +18,23 @@
     <td *ngFor="let valor of resTabla">{{valor}}</td>
   </tr>
   </tbody>
+</table>
+</div>
+
+<div class="alert alert-info" role="alert">
+  Resultado x
+</div>
+<table 
+class="table table-dark mt-3 table-striped">
+<thead>
+  <th scope="col">X</th>
+  <th scope="col">Resultado</th>
+</thead>
+<tbody>
+  <tr *ngFor="let tabla of resultadosFinales;let i = index">
+  <th scope="row">{{i+1}}</th>
+  <td scope="row">{{resultadosFinales[i]}}</td>
+  </tr>
+</tbody>
 </table>
 
