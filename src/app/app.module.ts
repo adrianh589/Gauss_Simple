@@ -11,6 +11,9 @@ import { CargaComponent } from './pages/carga/carga.component';
 import { IteracionesComponent } from './pages/iteraciones/iteraciones.component';
 import { ModalsComponent } from './components/modals/modals.component';
 import { RouterModule } from '@angular/router';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+ import {ScrollingModule} from "@angular/cdk/scrolling";
+import {ScrollingModule as ExperimentalScrollingModule} from '@angular/cdk-experimental/scrolling';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NoopAnimationsModule,
+    ScrollingModule,
+    ExperimentalScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

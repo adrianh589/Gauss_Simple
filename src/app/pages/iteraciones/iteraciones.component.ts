@@ -13,16 +13,17 @@ export class IteracionesComponent {
   public numeros;
   public iteracionesHTML;
   public resultadosFinales;
+  public items = Array(500).fill(0);
 
   constructor(private gaussService: GaussService) {
-    // this.numeros = this.convertirAarray();//Descomentar esta linea para leer los numeros por txt
-    
-    this.numeros = [
-      [3, -0.1,	-0.2, 5,	7.85],
-      [0.1,	7,	-0.3, 3,	-19.3],
-      [0.3,	-0.2,	10, 2,	71.4],
-      [0.5,	-0.5,	7, 0.5,	21.2]
-    ];
+    this.numeros = this.convertirAarray();//Descomentar esta linea para leer los numeros por txt
+
+    // this.numeros = [
+    //   [3, -0.1,	-0.2, 5,	7.85],
+    //   [0.1,	7,	-0.3, 3,	-19.3],
+    //   [0.3,	-0.2,	10, 2,	71.4],
+    //   [0.5,	-0.5,	7, 0.5,	21.2]
+    // ];
 
     //Instancia de la clase
     const gaussSimple = new GaussSimple(this.numeros);
@@ -32,7 +33,7 @@ export class IteracionesComponent {
     console.log(this.iteracionesHTML);
     //Resultados finales de la matriz
     this.resultadosFinales = gaussResult(this.numeros);
-    console.table(this.resultadosFinales);
+    console.log(this.numeros);
   }
 
   /**
