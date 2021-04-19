@@ -1,6 +1,6 @@
-/*.tabla-ampliada{*/
-/*  width: 100%;*/
-/*}*/
+table, th, td {
+  border: 1px solid black;
+}
 
 .list-container{
   height: 600px;

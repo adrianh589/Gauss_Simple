@@ -14,6 +14,7 @@ declare var $: any;
 export class CargaComponent {
 
   public formularioPosteado = false;
+  public spinner = true;
 
   public cargaFormulario = this.fb.group({
     archivo: ['', [Validators.required]]
@@ -59,5 +60,10 @@ export class CargaComponent {
         archivo.setErrors({ NoEsTxt: true });
       }
     }
+  }
+
+  cancelarSpinner(){
+    this.spinner = false;
+    return ' ';
   }
 }

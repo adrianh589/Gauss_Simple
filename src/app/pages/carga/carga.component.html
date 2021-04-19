@@ -1,15 +1,15 @@
 <!-- Carga del formulario -->
 <div class="container h-100 d-flex align-items-center justify-content-center">
-  <form 
+  <form
 [formGroup]="cargaFormulario"
 >
   <h2 class="mt-5">Por favor seleccione el archivo txt...</h2>
 
-      <input 
+      <input
       (change)="leerArchivo($event.target['files'])"
       formControlName="archivo"
-      type="file" 
-      class="form-control-file" 
+      type="file"
+      class="form-control-file"
       id="inputGroupFile01">
 </form>
 
@@ -21,4 +21,8 @@
 
 </div>
 <app-modals></app-modals>
+
+<div class="spinner-border" role="status">
+  <span class="visually-hidden"></span>
+</div>
 

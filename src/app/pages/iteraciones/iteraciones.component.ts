@@ -8,21 +8,22 @@ import gaussResult from 'gaussian-elimination';
   templateUrl: './iteraciones.component.html',
   styleUrls: ['./iteraciones.component.css']
 })
-export class IteracionesComponent {
+export class IteracionesComponent implements OnInit{
 
   public numeros;
-  public iteracionesHTML;
+  public iteracionesHTML: any;
   public resultadosFinales;
-  public items = Array(500).fill(0);
+  public ultimasIteraciones;
 
   constructor(private gaussService: GaussService) {
-    this.numeros = this.convertirAarray();//Descomentar esta linea para leer los numeros por txt
+    this.numeros = this.convertirAarray();//Descomentar esta linea para leer los numeros por txt'
+  }
 
+  ngOnInit() {
     // this.numeros = [
-    //   [3, -0.1,	-0.2, 5,	7.85],
-    //   [0.1,	7,	-0.3, 3,	-19.3],
-    //   [0.3,	-0.2,	10, 2,	71.4],
-    //   [0.5,	-0.5,	7, 0.5,	21.2]
+    //   [3, -0.1,	-0.2, 7.85],
+    //   [0.1,	7,	-0.3, -19.3],
+    //   [0.3,	-0.2,	10, 71.4],
     // ];
 
     //Instancia de la clase
@@ -31,9 +32,13 @@ export class IteracionesComponent {
     this.iteracionesHTML = gaussSimple.ejecutar();
     //Imprimir por consola las iteraciones
     console.log(this.iteracionesHTML);
+    // Imprimir las ultimas iteraciones para evitar retrasos
+    this.ultimasIteraciones = this.iteracionesHTML.slice(-2);
+    //Ver las ultimas iteraciones
+    console.log(this.ultimasIteraciones);
     //Resultados finales de la matriz
     this.resultadosFinales = gaussResult(this.numeros);
-    console.log(this.numeros);
+    // console.log(this.numeros);
   }
 
   /**
